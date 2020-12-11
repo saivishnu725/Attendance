@@ -47,11 +47,14 @@ class _MainScreenState extends State<MainScreen> {
         itemCount: names.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text(
-              "$names[$index]",
-              style: TextStyle(
-                color: Colors.yellow[700],
-                fontWeight: FontWeight.bold,
+            title: Padding(
+              padding: const EdgeInsets.all(08.0),
+              child: Text(
+                "${names[index]}",
+                style: TextStyle(
+                  color: Colors.yellow[700],
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             leading: Text(
@@ -60,30 +63,26 @@ class _MainScreenState extends State<MainScreen> {
                 color: Colors.amber[700],
               ),
             ),
-            trailing: Row(
-              children: [
-                IconButton(
-                  icon: Icon(Icons.add),
-                  onPressed: () {
-                    debugPrint(
-                        "Add one if not added for person $names[$index]");
-                    setState(() {
+            trailing: Padding(
+              padding: const EdgeInsets.only(left:80.0),
+              child: IconButton(
+                splashColor: Colors.blue,
+                icon: Icon(Icons.add),
+                onPressed: () {
+                  debugPrint(
+                      "Add one if not added for person $names[$index]");
+                  setState(() {
+                    if (addColor == Colors.blue) {
+                      addColor = Colors.white;
+                    }
+                    else
+                    {
                       addColor = Colors.blue;
-                    });
-                  },
-                  color: addColor,
-                ),
-                IconButton(
-                  icon: Icon(Icons.remove),
-                  onPressed: () {
-                    debugPrint("Remove one if ADDED for person $names[$index]");
-                    setState(() {
-                      remColor = Colors.blue;
-                    });
-                  },
-                  color: remColor,
-                ),
-              ],
+                    }
+                  });
+                },
+                color: addColor,
+              ),
             ),
           );
         },
