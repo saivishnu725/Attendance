@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
 import 'data.dart';
 
-var addColor = Colors.white;
-var remColor = Colors.white;
+List addColor = [
+  Colors.white,
+  Colors.white,
+  Colors.white,
+  Colors.white,
+  Colors.white,
+  Colors.white,
+  Colors.white
+];
+List remColor = [
+  Colors.white,
+  Colors.white,
+  Colors.white,
+  Colors.white,
+  Colors.white,
+  Colors.white,
+  Colors.white
+];
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key key}) : super(key: key);
@@ -43,17 +59,39 @@ class _MainScreenState extends State<MainScreen> {
         leading: Icon(Icons.money_off),
         actions: [actionAppBar()],
       ),
-      body: ListView(
-        children: [
-          //Moving away from the template cuz i dont have to add new ppl.
-          ListTile(),//1
-          ListTile(),//2
-          ListTile(),//3
-          ListTile(),//4
-          ListTile(),//5
-          ListTile(),//6
-          ListTile(),//7
-        ],
+      body: ListView.builder(
+        itemCount: 7,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            leading: Text(
+              "totalDaysFor${names[index]}",
+              style: TextStyle(
+                  color: Colors.amber[700], fontWeight: FontWeight.bold),
+            ),
+            title: Text(names[index],
+                style: TextStyle(
+                    color: Colors.yellow[700], fontWeight: FontWeight.bold)),
+            // subtitle: Text("sub"),
+            trailing: RaisedButton(
+              child: Icon(
+                Icons.add,
+                color: addColor[index],
+              ),
+              elevation: 0.0,
+              color: Colors.grey[800],
+              onPressed: () {
+                debugPrint("Add the day for ${names[index]}");
+                setState(() {
+                  if (addColor[index] == Colors.blue) {
+                    addColor[index] = Colors.white;
+                  } else {
+                    addColor[index] = Colors.blue;
+                  }
+                });
+              },
+            ),
+          );
+        },
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-List<String> names = ['1', '2', '3', '4', '5', '6'];
+List<String> names = ['1', '2', '3', '4', '5', '6','7'];
 Widget actionAppBar() {
   return Row(children: [
     RaisedButton(
