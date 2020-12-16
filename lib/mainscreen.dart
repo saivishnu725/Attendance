@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'allweeks.dart';
 import 'data.dart';
 
+String date = '${DateTime.now()}'.substring(0, 10);
+List<int> total = [0, 0, 0, 0, 0, 0, 0];
 List addColor = [
   Colors.white,
   Colors.white,
@@ -43,8 +46,9 @@ class _MainScreenState extends State<MainScreen> {
           },
           elevation: 0.0,
           splashColor: Colors.blueGrey[700],
-          child: Padding(
-            padding: const EdgeInsets.only(left: 18.0),
+          child: RaisedButton(
+            elevation: 0.0,
+            color: Colors.blueGrey[700],
             child: Text(
               "Week 1",
               style: TextStyle(
@@ -53,6 +57,11 @@ class _MainScreenState extends State<MainScreen> {
                 fontSize: 20.0,
               ),
             ),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return AllWeeks();
+              }));
+            },
           ),
         ),
         // centerTitle: true,
@@ -64,13 +73,29 @@ class _MainScreenState extends State<MainScreen> {
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
             leading: Text(
-              "totalDaysFor${names[index]}",
+              "${total[index]}",
               style: TextStyle(
                   color: Colors.amber[700], fontWeight: FontWeight.bold),
             ),
-            title: Text(names[index],
-                style: TextStyle(
-                    color: Colors.yellow[700], fontWeight: FontWeight.bold)),
+            title: Row(
+              children: [
+                Text(
+                  names[index],
+                  style: TextStyle(
+                      color: Colors.yellow[700], fontWeight: FontWeight.bold),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 160.0),
+                  child: Text(
+                    "abc",
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
             // subtitle: Text("sub"),
             trailing: RaisedButton(
               child: Icon(
@@ -80,11 +105,15 @@ class _MainScreenState extends State<MainScreen> {
               elevation: 0.0,
               color: Colors.grey[800],
               onPressed: () {
-                debugPrint("Add the day for ${names[index]}");
+                debugPrint('$date');
                 setState(() {
                   if (addColor[index] == Colors.blue) {
+                    debugPrint("Remove the day for ${names[index]}");
+                    total[index] -= 1;
                     addColor[index] = Colors.white;
                   } else {
+                    debugPrint("Add the day for ${names[index]}");
+                    total[index] += 1;
                     addColor[index] = Colors.blue;
                   }
                 });
