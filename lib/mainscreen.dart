@@ -32,6 +32,12 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   @override
+  void initState() {
+    super.initState();
+    sal.clear();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[800],
@@ -71,6 +77,7 @@ class _MainScreenState extends State<MainScreen> {
       body: ListView.builder(
         itemCount: 7,
         itemBuilder: (BuildContext context, int index) {
+          sal['${names[index]}'] = 0;
           return ListTile(
             leading: Text(
               "${total[index]}",
@@ -109,11 +116,15 @@ class _MainScreenState extends State<MainScreen> {
                 setState(() {
                   if (addColor[index] == Colors.blue) {
                     debugPrint("Remove the day for ${names[index]}");
+                    sal['$index'] -= 150;
+                    debugPrint("$index + ${sal['$index']}");
                     total[index] -= 1;
                     addColor[index] = Colors.white;
                   } else {
                     debugPrint("Add the day for ${names[index]}");
+                    sal['$index'] += 150;
                     total[index] += 1;
+                    debugPrint("$index + ${sal['$index']}");
                     addColor[index] = Colors.blue;
                   }
                 });

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-List<String> names = ['1', '2', '3', '4', '5', '6','7'];
+List<String> names = ['1', '2', '3', '4', '5', '6', '7'];
+Map<String, double> sal;
 Widget actionAppBar() {
   return Row(children: [
     RaisedButton(
@@ -29,4 +30,3 @@ Widget actionAppBar() {
     ),
   ]);
 }
-

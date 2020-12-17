@@ -15,8 +15,8 @@ class _AllWeeksState extends State<AllWeeks> {
       appBar: AppBar(
         backgroundColor: Colors.blueGrey[700],
         title: Text('Week 1'),
-        leading: Icon(Icons.add),
-        
+        // leading: Icon(Icons.add),
+        centerTitle: true,
       ),
     );
   }
